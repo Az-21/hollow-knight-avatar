@@ -4,6 +4,7 @@
 	import Navbar from '../components/Navbar.svelte';
 	import Selector from '../components/Selector.svelte';
 	import DisplayComponents from '../components/DisplayComponents.svelte';
+	import Footer from '../components/Footer.svelte';
 
 	// Page dimension constants
 	export let center: string = 'flex w-4/5 mx-auto';
@@ -95,10 +96,14 @@
 		</div>
 	</div>
 </div>
+
 <!-- View components -->
 <div on:click={() => createImage()}>
 	<DisplayComponents {category} bind:faceId bind:eyesId />
 </div>
+
+<!-- Footer -->
+<Footer />
 
 <style>
 	:global(body) {
