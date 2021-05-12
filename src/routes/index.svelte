@@ -55,7 +55,7 @@
 </div>
 
 <!-- Avatar components -->
-<div class="mt-8 flex justify-center space-x-4" on:change={() => createImage()}>
+<div class="mt-8 flex justify-center space-x-4" on:click={() => createImage()}>
 	<Selector
 		componentName="Face"
 		bind:componentId={faceId}
