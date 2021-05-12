@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { face, eyes } from '../components/AvatarData.svelte';
+	import Selector from '../components/Selector.svelte';
 
 	// Canvas width and height || WARNING: Do not change
 	let canvasWidth: number = 512;
@@ -16,26 +17,30 @@
 		ctx.fillText('Az-21/hollow-knight-avatar/', canvasWidth / 2, canvasHeight / 2);
 	});
 
-	// Avatar data
+	// Avatar componet ID data
 	let faceId: number = 0;
 	let eyesId: number = 0;
 
+	// Avatar component y-position data
+	let yFace: number = -10;
+	let yEyes: number = 0;
+
 	function createImage() {
 		const ctx = canvas.getContext('2d');
-		const drawImage = (url: string) => {
+		const drawImage = (url: string, yPosition: number) => {
 			const image = new Image();
 			image.src = url;
 			image.onload = () => {
-				ctx.drawImage(image, 0, 0);
+				ctx.drawImage(image, 0, yPosition);
 			};
 		};
 
-		// Clear previous render -> prevent overlap
+		// Clear previous render
 		ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
 		// Draw knight
-		drawImage(face[faceId]);
-		drawImage(eyes[eyesId]);
+		drawImage(face[faceId], yFace);
+		drawImage(eyes[eyesId], yEyes);
 	}
 </script>
 
@@ -51,19 +56,17 @@
 
 <!-- Avatar components -->
 <div class="mt-8 flex justify-center space-x-4" on:change={() => createImage()}>
-	<input
-		type="number"
-		class="bg-transparent ring-2 ring-blue-400"
-		bind:value={faceId}
-		min="0"
-		max={face.length - 1}
+	<Selector
+		componentName="Face"
+		bind:componentId={faceId}
+		componentCount={face.length - 1}
+		bind:yPos={yFace}
 	/>
-	<input
-		type="number"
-		class="bg-transparent ring-2 ring-blue-400"
-		bind:value={eyesId}
-		min="0"
-		max={eyes.length - 1}
+	<Selector
+		componentName="Eyes"
+		bind:componentId={eyesId}
+		componentCount={eyes.length - 1}
+		bind:yPos={yEyes}
 	/>
 </div>
 
