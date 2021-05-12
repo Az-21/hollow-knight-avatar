@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { face, eyes } from '../components/AvatarData.svelte';
 	import Selector from '../components/Selector.svelte';
+	import DisplayComponents from '../components/DisplayComponents.svelte';
 
 	// Canvas width and height || WARNING: Do not change
 	let canvasWidth: number = 512;
@@ -42,6 +43,12 @@
 		drawImage(face[faceId], yFace);
 		drawImage(eyes[eyesId], yEyes);
 	}
+
+	// Display all available components within a category
+	let category = 0;
+	function changeCategory(num: number) {
+		category = num;
+	}
 </script>
 
 <!-- Canvas -->
@@ -56,18 +63,30 @@
 
 <!-- Avatar components -->
 <div class="mt-8 flex justify-center space-x-4" on:click={() => createImage()}>
-	<Selector
-		componentName="Face"
-		bind:componentId={faceId}
-		componentCount={face.length - 1}
-		bind:yPos={yFace}
-	/>
-	<Selector
-		componentName="Eyes"
-		bind:componentId={eyesId}
-		componentCount={eyes.length - 1}
-		bind:yPos={yEyes}
-	/>
+	<!-- Face -->
+	<div on:click={() => changeCategory(0)}>
+		<Selector
+			componentName="Face"
+			bind:componentId={faceId}
+			componentCount={face.length - 1}
+			bind:yPos={yFace}
+		/>
+	</div>
+
+	<!-- Eyes -->
+	<div on:click={() => changeCategory(1)}>
+		<Selector
+			componentName="Eyes"
+			bind:componentId={eyesId}
+			componentCount={eyes.length - 1}
+			bind:yPos={yEyes}
+		/>
+	</div>
+</div>
+
+<!-- View components -->
+<div on:click={() => createImage()}>
+	<DisplayComponents {category} bind:faceId bind:eyesId />
 </div>
 
 <style>

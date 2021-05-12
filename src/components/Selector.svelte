@@ -9,8 +9,11 @@
 
 <div class="bg-gray-900 rounded-xl p-6">
 	<div class="divide-y-2 divide-green-500">
-		<p class="text-lg font-medium">Customize {componentName}</p>
-		<p />
+		<div class="flex justify-between items-end">
+			<p class="text-xl font-medium">Customize {componentName}</p>
+			<Button text="View All" color="bg-blue-600" />
+		</div>
+		<p class="mt-2" />
 	</div>
 	<div class="mt-2 grid grid-cols-2 gap-x-8 gap-y-4 items-end">
 		<!-- Row 1 -->
