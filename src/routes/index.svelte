@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { face, eyes } from '../components/AvatarData.svelte';
+	import Navbar from '../components/Navbar.svelte';
 	import Selector from '../components/Selector.svelte';
 	import DisplayComponents from '../components/DisplayComponents.svelte';
 
@@ -54,6 +55,8 @@
 		category = num;
 	}
 </script>
+
+<Navbar />
 
 <div class="{center} {spacing} flex md:flex-col lg:flex-row justify-between space-x-5">
 	<!-- Canvas -->
