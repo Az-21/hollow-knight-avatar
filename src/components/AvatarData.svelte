@@ -1,11 +1,13 @@
 <script lang="ts" context="module">
+	let cdn: string = 'https://res.cloudinary.com/az21/image/upload/';
+
 	export const face: string[] = [
-		'https://cdn.imgchest.com/files/my8xcgkwv4l.png',
-		'https://cdn.imgchest.com/files/345xcm9gg7w.png'
+		`${cdn}v1620892718/hk/face-2_fo9z8v.png`,
+		`${cdn}v1620892718/hk/face-1_y3oudl.png`
 	];
 
 	export const eyes: string[] = [
-		'https://cdn.imgchest.com/files/e4gdc9plv4r.png',
-		'https://cdn.imgchest.com/files/g4z9c3wn372.png'
+		`${cdn}v1620892718/hk/eyes-1_ectuji.png`,
+		`${cdn}v1620892718/hk/eyes-2_osilnf.png`
 	];
 </script>

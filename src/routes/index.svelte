@@ -37,6 +37,7 @@
 		const ctx = canvas.getContext('2d');
 		const drawImage = (url: string, yPosition: number) => {
 			let image = new Image();
+			image.setAttribute('crossOrigin', 'anonymous');
 			image.src = url;
 			image.onload = () => {
 				ctx.drawImage(image, 0, yPosition);
@@ -52,11 +53,9 @@
 	}
 
 	function savePNG() {
-		alert(
-			"Please right click on image and select 'Save image as' to download your Hollow Knight avatar."
-		);
-
-		/*
+		// alert(
+		// 	"Please right click on image and select 'Save image as' to download your Hollow Knight avatar."
+		// );
 
 		// DISABLED: Image Bucket does not append CORS
 		// Hours of life gone. Reduced to dust.
@@ -68,7 +67,6 @@
 			canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
 		);
 		link.click();
-		*/
 	}
 
 	// Reset everything by reloading page
@@ -97,6 +95,10 @@
 		<div class="flex my-5 justify-around">
 			<div on:click={() => savePNG()}>
 				<Button text="Download Avatar" color="bg-purple-500" />
+
+				<!-- Keep this to enable download -->
+				<!-- svelte-ignore a11y-missing-content -->
+				<a id="link" />
 			</div>
 			<div on:click={() => resetCanvas()}>
 				<Button text="Reset Everything" color="bg-purple-500" />
